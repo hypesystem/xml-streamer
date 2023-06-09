@@ -1,11 +1,7 @@
 {
-  "version": "2.0.0",
-  "name": "xml-streamer",
+  "version": "1.0.0",
+  "name": "@deranged/xml-streamer",
   "description": "XML stream parser for parsing large files efficiently with less usage of memory.",
-  "author": {
-    "name": "Sai Teja",
-    "email": "saitejas464@gmail.com"
-  },
   "keywords": [
     "xml",
     "xml streaming",
@@ -21,7 +17,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Sai1919/xml-streamer"
+    "url": "https://github.com/hypesystem/xml-streamer"
   },
   "dependencies": {
     "node-expat": "2.3.18",
