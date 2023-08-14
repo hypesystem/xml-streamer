@@ -227,7 +227,7 @@ function registerEvents () {
   function checkForResourcePath (name) {
     if (resourcePath) {
       let _currentPath = resourcePathCaseInsensitive ? state.currentPath.toLowerCase() : state.currentPath
-      state.isPathfound = _currentPath.indexOf(resourcePath) === 0 && _currentPath[resourcePath] === "/"
+      state.isPathfound = _currentPath.indexOf(resourcePath) === 0 && (_currentPath[resourcePath.length] === "/" || _currentPath[resourcePath.length] === undefined)
     } else {
       if (_.includes(interestedNodes, name, 0)) {
         state.isPathfound = true
