@@ -139,10 +139,11 @@ function registerEvents () {
       }
     })
   }
-
-  parser.on('text', function (text) {
-    if (state.isPathfound) processText(text)
-  })
+  else {
+    parser.on('text', function (text) {
+      if (state.isPathfound) processText(text)
+    })
+  }
 
   parser.on('error', function (err) {
     processError.call(this, err)
