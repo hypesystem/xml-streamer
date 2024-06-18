@@ -226,7 +226,7 @@ function registerEvents () {
     let tempObj = state.object
     if (!path) {
       if (!state.object[textKey]) state.object[textKey] = ''
-      state.object[textKey] = state.object[textKey] + text
+      if (!deduplicateTextNodes || state.object[textKey] !== text) state.object[textKey] = state.object[textKey] + text
       return
     }
     const tokens = path.split('.')
@@ -246,7 +246,7 @@ function registerEvents () {
       obj[textKey] = obj[textKey] + text
     } else {
       if (!tempObj[textKey]) tempObj[textKey] = ''
-      tempObj[textKey] = tempObj[textKey] + text
+      if (!deduplicateTextNodes || tempObj[textKey] !== text) tempObj[textKey] = tempObj[textKey] + text
     }
   }
 
