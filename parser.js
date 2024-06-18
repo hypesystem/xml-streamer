@@ -13,7 +13,8 @@ const defaults = {
   textKey: '_',
   explicitArray: true,
   verbatimText: false,
-  deduplicateNesting: false
+  deduplicateNesting: false,
+  deduplicateTextNodes: false,
 }
 
 function XmlParser (opts) {
@@ -104,6 +105,7 @@ function registerEvents () {
   // This is a super weird option that will break some XML files
   // but is needed for some weird edge cases where for some reason a file reads each node twice??
   const deduplicateNesting = this.opts.deduplicateNesting
+  const deduplicateTextNodes = this.opts.deduplicateTextNodes
 
   parser.on('startElement', function (name, attrs) {
     if (deduplicateNesting && state.currentPath.endsWith('/' + name)) {
@@ -125,6 +127,18 @@ function registerEvents () {
     if (state.isPathfound) processEndElement(name)
     checkForResourcePath(name)
   })
+
+  if(deduplicateTextNodes) {
+    parser.on('text', function (text) {
+      if (state.isPathfound) {
+        const firstHalfText = text.slice(0, text.length / 2)
+        if (firstHalfText === text.slice(text.length / 2)) {
+          text = firstHalfText
+        }
+        processText(text)
+      }
+    })
+  }
 
   parser.on('text', function (text) {
     if (state.isPathfound) processText(text)
