@@ -128,22 +128,9 @@ function registerEvents () {
     checkForResourcePath(name)
   })
 
-  if(deduplicateTextNodes) {
-    parser.on('text', function (text) {
-      if (state.isPathfound) {
-        const firstHalfText = text.slice(0, text.length / 2)
-        if (firstHalfText === text.slice(text.length / 2)) {
-          text = firstHalfText
-        }
-        processText(text)
-      }
-    })
-  }
-  else {
-    parser.on('text', function (text) {
-      if (state.isPathfound) processText(text)
-    })
-  }
+  parser.on('text', function (text) {
+    if (state.isPathfound) processText(text)
+  })
 
   parser.on('error', function (err) {
     processError.call(this, err)
