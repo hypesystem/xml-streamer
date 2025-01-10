@@ -1,5 +1,5 @@
 {
-  "version": "1.0.6",
+  "version": "1.0.7",
   "name": "@deranged/xml-streamer",
   "description": "XML stream parser for parsing large files efficiently with less usage of memory.",
   "keywords": [
